@@ -24,18 +24,25 @@ public class Login {
         String idPassword = "password";
         String btn = ".css-1n8i4of";
 
+        // mencari dan mendefinisikan element
         WebElement element1 = driver.findElement(By.id(idEmail));
         WebElement element2 = driver.findElement(By.id(idPassword));
         WebElement element3 = driver.findElement(By.cssSelector(btn));
 
-        element1.click();
-        element1.sendKeys(email);
-        element1.getText();
+        // mendefinisikan xpath element
+        // di inspect element, klik kanan element -> copy -> copy xpath
+        WebElement elementXpath1 = driver.findElement(By.xpath("//*[@id='email']"));
+        WebElement elementXpath2 = driver.findElement(By.xpath("//*[@id=\"password\"]"));
+        WebElement elementXpath3 = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div/div/div[2]/div/button"));
 
-        element2.click();
-        element2.sendKeys(password);
+        elementXpath1.click();
+        elementXpath1.sendKeys(email);
+        elementXpath1.getText();
 
-        element3.click();
+        elementXpath2.click();
+        elementXpath2.sendKeys(password);
+
+        elementXpath3.click();
 
 //        driver.close(); // tutup window
     }
