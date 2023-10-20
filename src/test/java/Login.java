@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.concurrent.TimeUnit;
+
 public class Login {
 
     WebDriver driver; // set driver untuk testing menggunakan webdriver dari selenium
@@ -17,6 +19,7 @@ public class Login {
         WebDriverManager.chromedriver().setup(); // setup chrome driver dengan otomatis menggunakan web driver manager
         driver = new ChromeDriver(); // set variable driver agar automation dijalankan di browser chrome
         driver.manage().window().maximize(); // maximize window
+        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS); // berhubungan dengan assertion, ketika time out disini tidak didefinisikan maka assertion dibawah tidak akan berfungsi
         driver.get(baseUrl); // akses baseUrl
 
         // assertion -> memverifikasi apakah perintah tersebut benar benar expected
@@ -50,6 +53,10 @@ public class Login {
         elementXpath2.sendKeys(password);
 
         elementXpath3.click();
+
+        // disini kita bisa melakukan assertion karena kita sudah mendefinisikan time out implicitlyWait diatas
+        String successLoginAssert = driver.findElement(By.xpath("//h3[contains(text(), 'kasirAja')]")).getText();
+        Assert.assertEquals("kasirAja", successLoginAssert);
 
 //        driver.close(); // tutup window
     }
