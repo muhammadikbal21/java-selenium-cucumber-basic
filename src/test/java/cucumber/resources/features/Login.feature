@@ -1,5 +1,6 @@
 Feature: Login to kasirAja
 
+  @Regression @Positive
   Scenario: Login with Valid Account
     Given User on login page
     When Input username
@@ -7,6 +8,7 @@ Feature: Login to kasirAja
     And Click login button
     Then User will be on dashboard page
 
+  @Negative
   Scenario: Login with Invalid Account
     Given User on login page
     When Input username
